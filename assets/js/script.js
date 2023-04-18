@@ -10,9 +10,8 @@ loadCities();
 
 console.log(searchInput);
 
-
+//this allows for the screen to display the city's weather that the user inputed. 
 searchBtn.addEventListener('click', function (event) {
-//function clickEvent() {
     event.preventDefault();
     var userInput = searchInput.value.toLowerCase();
     if (userInput.length == 0) {
@@ -21,30 +20,9 @@ searchBtn.addEventListener('click', function (event) {
 
     cities.push(userInput);
     saveCitiesToStorage(cities);
-
-    // var lat = '';
-    // var lon = '';
-    //    fetch("https://api.openweathermap.org/data/2.5/forecast?"
-    // fetch(forecastURL + userInput + "&appid=" + apiKey + "&units=imperial")
-    //     .then(function (response) {
-    //         return response.json();
-    //     })
-    //     .then(function (data) {
-    //         console.log(data);
-    //         lat = data.city.coord.lat;
-    //         lon = data.city.coord.lon;
-    //         console.log('lat = ' + lat);
-    //         console.log('lon = ' + lon);
-    //     })
-
-
-
-    //  fetch(weatherURL + "lat=" + lat + "&lon=" + lon + "&appid=" + apiKey +
-    //     "&units=imperial") {
+   
     fetch(weatherURL + userInput + "&appid=" + apiKey + "&units=imperial")
         .then(function (response) {
-            //fetch(forecastURL + userInput + "&appid=" + apiKey + "&units=imperial")
-            //    .then(function (response) {
             return response.json();
         })
         .then(function (data) {
@@ -71,29 +49,15 @@ searchBtn.addEventListener('click', function (event) {
 
 })
 
-// function clickEvent() { 
-
-// }
-
-//document.getElementById('search-btn').addEventListener('click',clickEvent);
-
-// let buttons = document.querySelectorAll('.button');
-// buttons.forEach((item) => {
-//     item.addEventListener('click', clickEvent)
-// });
-
+//this grabs the data from the api link and key
 function setText5Days(data, index) {
-
-    //date, temp, humidity, windspeed) {
-    //return 'Date: ' + date.substring(0, 10) + ' Temperature: ' + temp + ' Humidity: ' +
-    //    humidity + ' Windspeed: ' + windspeed;
     return 'Date: ' + data.list[index].dt_txt.substring(0, 10) +
         ' Temperature: ' + data.list[index].main.temp +
         ' Humidity: ' + data.list[index].main.humidity +
         ' Windspeed: ' + data.list[index].wind.speed;
 }
 
-
+//this stores the cities to localStorage
 var cities = readCitiesFromStorage();
 
 function readCitiesFromStorage() {
@@ -111,8 +75,7 @@ function saveCitiesToStorage(cities) {
 }
 
 
-
-
+//this loads the cities from localStorage to the buttons
 function loadCities() {
     var items = readCitiesFromStorage();
     console.log(items);
