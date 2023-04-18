@@ -28,8 +28,7 @@ searchBtn.addEventListener('click', function (event) {
     //         console.log('lon = ' + lon);
     //     })
 
-    // await (lat!='');
-    // await (lon!='');
+    
 
     // fetch(weatherURL + "lat=" + lat + "&lon=" + lon + "&appid=" + apiKey +
     //    "&units=imperial")
